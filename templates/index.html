@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>capstone project</title>
+        <link rel="stylesheet" href="styles/index.css"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    </head>
+    <body>
+        <main>
+            <h1>capstone project</h1>
+            <input type="text" id="question" placeholder="In relation to Eunice Fay McKenzie's career, which statement accurately reflects her most notable work?"/>
+            <input type="text" id="A" placeholder="McKenzie showcased her singing talents in numerous musical productions, garnering critical acclaim."/>
+            <input type="text" id="B" placeholder="McKenzie is primarily remembered for her starring roles opposite Gene Autry in popular Western films of the 1940s."/>
+            <input type="text" id="C" placeholder="McKenzie gained recognition for her role as a child actress in a series of iconic silent films."/>
+            <input type="text" id="D" placeholder="McKenzie's collaborations with director Blake Edwards were instrumental in her rise to fame."/>
+            <input type="text" id="E" placeholder="McKenzie's successful career in sound films continued into adulthood, becoming known for her versatile acting abilities."/>
+            <button type="button" id="reset_button">Clear</button>
+            <button type="button" id="submit_button">Submit</button>
+            <p id="answer">The answer is </p>
+            <p>The answer should be B</p>
+        </main>
+    </body>
+</html>
