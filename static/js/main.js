@@ -31,3 +31,9 @@ reset_button.addEventListener('click', function () {
     E.value = '';
 });
 submit_button.addEventListener('click', submit_mcq);
+
+const camera_button = document.getElementById('camera_button');
+
+camera_button.addEventListener('click', function () {
+    // OCR 기능 구현
+});

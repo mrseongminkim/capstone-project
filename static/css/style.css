@@ -1,3 +1,121 @@
+/* styles/index.css */
+
+/* 공통 스타일 */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  width: 80%;
+  margin: auto;
+}
+
+h1 {
+  font-size: 2em;
+  color: #333;
+}
+
+input[type="text"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+button {
+  display: inline-block;
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+button:active {
+  background-color: #1e7e34;
+}
+
+button#reset_button {
+  background-color: #dc3545;
+}
+
+button#reset_button:hover {
+  background-color: #c82333;
+}
+
+button#reset_button:active {
+  background-color: #bd2130;
+}
+
 p {
-    color: red;
+  margin-bottom: 20px;
+}
+
+/* 태블릿 */
+@media (max-width: 768px) {
+  main {
+      width: 95%;
   }
+
+  h1 {
+      font-size: 1.5em;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 480px) {
+  main {
+      width: 100%;
+  }
+
+  h1 {
+      font-size: 1.2em;
+  }
+}
+
+/* 스타일 파일에 추가하세요. */
+/* 카메라 버튼 스타일 */
+#camera_button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #007bff;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none; /* 기본적으로 숨김 */
+}
+
+/* 모바일에서만 카메라 버튼 표시 */
+@media (max-width: 480px) {
+  #camera_button {
+      display: block;
+  }
+}
+
+/* 질문 칸 스타일 */
+#question {
+  background-color: #e9ecef;
+}
+
+/* 보기 칸 스타일 */
+#A, #B, #C, #D, #E {
+  background-color: #fff;
+}
+
+/* 제출 버튼 스타일 */
+#submit_button {
+  display: block;
+  margin: 20px auto;
+}
