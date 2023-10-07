@@ -10,17 +10,24 @@
     <body>
         <main>
             <h1>capstone project</h1>
-            <input type="text" id="question" value="In relation to Eunice Fay McKenzie's career, which statement accurately reflects her most notable work?"/>
-            <input type="text" id="A" value="McKenzie showcased her singing talents in numerous musical productions, garnering critical acclaim."/>
-            <input type="text" id="B" value="McKenzie is primarily remembered for her starring roles opposite Gene Autry in popular Western films of the 1940s."/>
-            <input type="text" id="C" value="McKenzie gained recognition for her role as a child actress in a series of iconic silent films."/>
-            <input type="text" id="D" value="McKenzie's collaborations with director Blake Edwards were instrumental in her rise to fame."/>
-            <input type="text" id="E" value="McKenzie's successful career in sound films continued into adulthood, becoming known for her versatile acting abilities."/>
-            <button type="button" id="reset_button">Clear</button>
-            <button type="button" id="submit_button">Submit</button>
-            <button type="button" id="camera_button">📷</button>
 
-            <p id="answer">The answer is </p>
+            <p>질문 입력 :</p>
+            <span class="option-label">Question.</span><input type="text" id="question" value="In relation to Eunice Fay McKenzie's career, which statement accurately reflects her most notable work?"/>
+            <p>보기 입력 :</p>
+            <span class="option-label">A.</span><input type="text" id="A" value="McKenzie showcased her singing talents in numerous musical productions, garnering critical acclaim."/>
+            <span class="option-label">B.</span><input type="text" id="B" value="McKenzie is primarily remembered for her starring roles opposite Gene Autry in popular Western films of the 1940s."/>
+            <span class="option-label">C.</span><input type="text" id="C" value="McKenzie gained recognition for her role as a child actress in a series of iconic silent films."/>
+            <span class="option-label">D.</span><input type="text" id="D" value="McKenzie's collaborations with director Blake Edwards were instrumental in her rise to fame."/>
+            <span class="option-label">E.</span><input type="text" id="E" value="McKenzie's successful career in sound films continued into adulthood, becoming known for her versatile acting abilities."/>
+ 
+            <button type="button" id="camera_button">📷</button>
+            
+            <button type="button" id="reset_button">전체 초기화</button>
+            <button type="button" id="submit_button">제출</button>
+
+
+
+            <p id="answer" style="display: none;">The answer is: </p>
             <p>The answer should be B</p>
         </main>
     </body>

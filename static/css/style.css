@@ -3,7 +3,7 @@
 /* 공통 스타일 */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
+  background-color: rgb(219, 219, 219);
   margin: 0;
   padding: 0;
 }
@@ -24,6 +24,7 @@ input[type="text"] {
   margin-bottom: 20px;
   border: 1px solid #ddd;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 button {
@@ -61,6 +62,34 @@ p {
   margin-bottom: 20px;
 }
 
+#answer {
+  color: blue;
+  font-size: 15px;
+  text-align: center;
+}
+
+.option-label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* 질문 칸 스타일 */
+#question {
+  background-color: #e9ecef;
+}
+
+/* 보기 칸 스타일 */
+#A, #B, #C, #D, #E {
+  background-color: #fff;
+}
+
+/* 제출 버튼 스타일 */
+#submit_button {
+  display: block;
+  margin: 20px auto;
+}
+
+
 /* 태블릿 */
 @media (max-width: 768px) {
   main {
@@ -83,7 +112,7 @@ p {
   }
 }
 
-/* 스타일 파일에 추가하세요. */
+
 /* 카메라 버튼 스타일 */
 #camera_button {
   position: fixed;
@@ -102,20 +131,4 @@ p {
   #camera_button {
       display: block;
   }
-}
-
-/* 질문 칸 스타일 */
-#question {
-  background-color: #e9ecef;
-}
-
-/* 보기 칸 스타일 */
-#A, #B, #C, #D, #E {
-  background-color: #fff;
-}
-
-/* 제출 버튼 스타일 */
-#submit_button {
-  display: block;
-  margin: 20px auto;
 }

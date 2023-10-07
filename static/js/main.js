@@ -19,7 +19,9 @@ async function submit_mcq(event) {
     };
     const res = await fetch('/mcq', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     let val = await res.json();
-    answer.textContent = "The answer is " + val.answer;
+    answer.textContent = "The answer is: " + val.answer;
+    answer.style.display = 'block';
+    
 }
 
 reset_button.addEventListener('click', function () {
