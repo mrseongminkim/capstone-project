@@ -2,7 +2,7 @@ from collections.abc import Iterable
 
 import pandas as pd
 import blingfire as bf
-import tqdm
+from tqdm.auto import tqdm
 
 def process_documents(documents: Iterable[str],
                       document_ids: Iterable,

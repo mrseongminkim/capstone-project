@@ -7,6 +7,7 @@ const E = document.getElementById('E');
 const reset_button = document.getElementById('reset_button');
 const submit_button = document.getElementById('submit_button');
 const answer = document.getElementById('answer');
+const prob = document.getElementById('prob');
 
 async function submit_mcq(event) {
     let data = {
@@ -20,6 +21,7 @@ async function submit_mcq(event) {
     const res = await fetch('/mcq', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     let val = await res.json();
     answer.textContent = "The answer is " + val.answer;
+    prob.textContent = "Probability: " + val.prob;
 }
 
 reset_button.addEventListener('click', function () {
