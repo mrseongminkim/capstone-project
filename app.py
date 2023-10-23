@@ -3,8 +3,6 @@ from flask import Flask, render_template, jsonify, request
 
 #from nn import run_model
 
-deberta_v3_large = '/kaggle/input/deberta-v3-large-hf-weights'
-
 app = Flask(__name__)
 
 @app.route('/')
