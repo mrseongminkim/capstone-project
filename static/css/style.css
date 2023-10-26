@@ -1,5 +1,5 @@
+/* tailwind css 적용 코드를 html에 추가했기 때문에 이 css파일은 사용안함 */
 /* styles/index.css */
-
 /* 공통 스타일 */
 body {
   font-family: 'Arial', sans-serif;
@@ -71,6 +71,7 @@ p {
 .option-label {
   font-weight: bold;
   margin-right: 10px;
+  margin-left: 10px;
 }
 
 /* 질문 칸 스타일 */
@@ -89,13 +90,39 @@ p {
   margin: 20px auto;
 }
 
+/* 로딩 문구 스타일 */
+#loading {
+  display : none;
+  color : blue;
+  font-size : 15px;
+  text-align : center;
+}
+
+/* 카메라 버튼 스타일 */
+#camera_button {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background-color: #5df327;
+  border: none;
+  padding: 15px;
+  border-radius: 70%;
+  cursor: pointer;
+  display: none; /* 기본적으로 숨김 */
+}
+
+/* 모바일에서만 카메라 버튼 표시 */
+@media (max-width: 768px) {
+  #camera_button {
+      display: block;
+  }
+}
 
 /* 태블릿 */
 @media (max-width: 768px) {
   main {
       width: 95%;
   }
-
   h1 {
       font-size: 1.5em;
   }
@@ -106,29 +133,7 @@ p {
   main {
       width: 100%;
   }
-
   h1 {
       font-size: 1.2em;
-  }
-}
-
-
-/* 카메라 버튼 스타일 */
-#camera_button {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  background-color: #007bff;
-  border: none;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: none; /* 기본적으로 숨김 */
-}
-
-/* 모바일에서만 카메라 버튼 표시 */
-@media (max-width: 480px) {
-  #camera_button {
-      display: block;
   }
 }

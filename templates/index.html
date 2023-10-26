@@ -1,34 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>capstone project</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
-    </head>
-    <body>
-        <main>
-            <h1>capstone project</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>capstone-project</title>
+    <link
+    rel="icon"
+    type="image/png"
+    href="/static/images/favicon-16x16.png"
+    sizes="16x16"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    href="/static/images/favicon-32x32.png"
+    sizes="32x32"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    href="/static/images/favicon-96x96.png"
+    sizes="96x96"
+  />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <script
+      src="https://kit.fontawesome.com/8c10ec3b61.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-            <p>질문 입력 :</p>
-            <span class="option-label">Question.</span><input type="text" id="question" value="In relation to Eunice Fay McKenzie's career, which statement accurately reflects her most notable work?"/>
-            <p>보기 입력 :</p>
-            <span class="option-label">A.</span><input type="text" id="A" value="McKenzie showcased her singing talents in numerous musical productions, garnering critical acclaim."/>
-            <span class="option-label">B.</span><input type="text" id="B" value="McKenzie is primarily remembered for her starring roles opposite Gene Autry in popular Western films of the 1940s."/>
-            <span class="option-label">C.</span><input type="text" id="C" value="McKenzie gained recognition for her role as a child actress in a series of iconic silent films."/>
-            <span class="option-label">D.</span><input type="text" id="D" value="McKenzie's collaborations with director Blake Edwards were instrumental in her rise to fame."/>
-            <span class="option-label">E.</span><input type="text" id="E" value="McKenzie's successful career in sound films continued into adulthood, becoming known for her versatile acting abilities."/>
- 
-            <button type="button" id="camera_button">📷</button>
-            
-            <button type="button" id="reset_button">전체 초기화</button>
-            <button type="button" id="submit_button">제출</button>
+  <body class="bg-gray-100 font-sans Giants-Bold">
+    <div class="container mx-auto p-8">
+      <div class="mb-4">
+        <h1 class="text-2xl text-blue-700 flex items-center">
+          <i class="fas fa-pencil mr-2"></i>문제 입력 페이지
+        </h1>
+        <div class="relative mb-4">
+          <input
+            type="text"
+            id="question"
+            aria-describedby="question_help"
+            class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 appearance-none border-0 border-b-2 border-blue-300 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            value="In relation to Eunice Fay McKenzie's career, which statement accurately reflects her most notable work?"
+          />
+          <label
+            for="question"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+            >문제를 입력하세요</label
+          >
+        </div>
+      </div>
 
+      <div class="mb-4">
+        <h2 class="text-lg text-blue-700 flex items-center">
+          객관식 보기<i class="fas fa-check ml-2"></i>
+        </h2>
 
+        <div class="relative mb-4">
+          <input
+            type="text"
+            id="A"
+            class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 appearance-none border-0 border-b-2 border-blue-300 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            value="McKenzie showcased her singing talents in numerous musical productions, garnering critical acclaim."
+          />
+          <label
+            for="A"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+            >답 A를 입력하세요</label
+          >
+        </div>
 
-            <p id="answer" style="display: none;">The answer is: </p>
-            <p>The answer should be B</p>
-        </main>
-    </body>
+        <div class="relative mb-4">
+          <input
+            type="text"
+            id="B"
+            class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 appearance-none border-0 border-b-2 border-blue-300 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            value="McKenzie is primarily remembered for her starring roles opposite Gene Autry in popular Western films of the 1940s."
+          />
+          <label
+            for="B"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+            >답 B를 입력하세요</label
+          >
+        </div>
+
+        <div class="relative mb-4">
+          <input
+            type="text"
+            id="C"
+            class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 appearance-none border-0 border-b-2 border-blue-300 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            value="McKenzie gained recognition for her role as a child actress in a series of iconic silent films."
+          />
+          <label
+            for="C"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+            >답 C를 입력하세요</label
+          >
+        </div>
+
+        <div class="relative mb-4">
+          <input
+            type="text"
+            id="D"
+            class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 appearance-none border-0 border-b-2 border-blue-300 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            value="McKenzie's collaborations with director Blake Edwards were instrumental in her rise to fame."
+          />
+          <label
+            for="D"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+            >답 D를 입력하세요</label
+          >
+        </div>
+
+        <div class="relative mb-4">
+          <input
+            type="text"
+            id="E"
+            class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 appearance-none border-0 border-b-2 border-blue-300 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            value="McKenzie's successful career in sound films continued into adulthood, becoming known for her versatile acting abilities."
+          />
+          <label
+            for="E"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+            >답 E를 입력하세요</label
+          >
+        </div>
+      </div>
+      <button
+        id="reset_button"
+        class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+      >
+        문제 초기화
+      </button>
+      <button
+        id="submit_button"
+        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+      >
+        정답 구하기
+      </button>
+      <button
+        id="camera_button"
+        class="fixed bottom-5 right-5 bg-gray-400 hover:bg-green-600 active:bg-green-700 text-white p-2 border rounded-full cursor-pointer"
+      ></button>
+      <input type="file" id="imageInput" class="hidden" />
+
+      <div id="answer" class="text-blue-500 text-lg text-center"></div>
+
+      <div id="loading" class="hidden text-blue-500 text-lg text-center mb-4">
+        로딩 중...
+        <div class="mt-4 w-1/5 mx-auto relative">
+          <div class="h-2 bg-gray-200"></div>
+          <div
+            class="h-2 bg-green-500 w-0 transition-all duration-5000 absolute top-0 left-0"
+            id="loadingBar"
+          ></div>
+          <p id="loadingPercentage" class="text-sm mt-1">0%</p>
+        </div>
+      </div>
+
+      <div id="prob" class="text-blue-500 text-lg text-center mt-4"></div>
+      <div>
+        <img id="image" src="" class="mx-auto mt-4" width="150" height="150" />
+      </div>
+    </div>
+  </body>
 </html>
