@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const imageElement = document.getElementById("image");
   let loadingInterval;
 
+  //test
+
   imageElement.style.display = "none";
   const updateImage = (probability) => {
     if (probability >= 0.8) {
