@@ -15,11 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   imageElement.style.display = "none";
   const updateImage = (probability) => {
-    if (probability >= 0.8 && probability <= 0.99) {
+    if (probability >= 0.8) {
       imageElement.src = "/static/images/smile.jpg";
-    } else if (probability >= 0.5 && probability < 0.8) {
+    } else if (probability >= 0.5) {
       imageElement.src = "/static/images/expressionless.jpg";
-    } else if (probability < 0.5) {
+    } else {
       imageElement.src = "/static/images/angry.jpg";
     }
   };
@@ -37,61 +37,65 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     let emptyFieldCount = 0;
+
     if (A.value === "") emptyFieldCount++;
     if (B.value === "") emptyFieldCount++;
     if (C.value === "") emptyFieldCount++;
     if (D.value === "") emptyFieldCount++;
     if (E.value === "") emptyFieldCount++;
-
-    if (emptyFieldCount === 5) {
-      selectedAnswer.innerHTML = "문제와 객관식 답을 모두 입력하세요.";
-    } else if (emptyFieldCount >= 4) {
-      selectedAnswer.innerHTML = "객관식 답을 2개 이상 입력하세요.";
+    if (question.value === "") {
+      selectedAnswer.innerHTML = "문제를 입력하세요.";
     } else {
-      loadingElement.style.display = "block";
+      if (emptyFieldCount === 5) {
+        selectedAnswer.innerHTML = "객관식 답을 입력하세요.";
+      } else if (emptyFieldCount >= 4) {
+        selectedAnswer.innerHTML = "객관식 답을 2개 이상 입력하세요.";
+      } else {
+        loadingElement.style.display = "block";
 
-      // 진행 중 타이머 clear
-      if (loadingInterval) {
-        clearInterval(loadingInterval);
-      }
-
-      // 로딩바 %초기화
-      resetLoadingBar();
-      document.getElementById("loading").classList.remove("hidden");
-
-      let currentPercentage = 0;
-
-      loadingInterval = setInterval(function () {
-        currentPercentage++;
-        updateLoadingBarAndPercentage(currentPercentage);
-        if (currentPercentage >= 100) {
+        // 진행 중 타이머 clear
+        if (loadingInterval) {
           clearInterval(loadingInterval);
         }
-      }, 90); // 9초 동안 매 90ms마다 1%씩 증가 -> 9초동안 100%차기
 
-      try {
-        const res = await fetch("/mcq", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        });
+        // 로딩바 %초기화
+        resetLoadingBar();
+        document.getElementById("loading").classList.remove("hidden");
 
-        if (res.ok) {
-          const val = await res.json();
-          selectedAnswer.innerHTML = `<h2>선택된 답은 ${val.answer}</h2>`;
-          prob.innerHTML = "Probability : " + val.prob;
-          updateImage(val.prob);
-          imageElement.style.display = "block";
-        } else {
+        let currentPercentage = 0;
+
+        loadingInterval = setInterval(function () {
+          currentPercentage++;
+          updateLoadingBarAndPercentage(currentPercentage);
+          if (currentPercentage >= 100) {
+            clearInterval(loadingInterval);
+          }
+        }, 300);
+
+        try {
+          const res = await fetch("/mcq", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          if (res.ok) {
+            const val = await res.json();
+            selectedAnswer.innerHTML = `<h2>선택된 답은 ${val.answer}</h2>`;
+            prob.innerHTML = "Probability : " + val.prob;
+            updateImage(val.prob);
+            imageElement.style.display = "block";
+          } else {
+            selectedAnswer.innerHTML =
+              "<p>Error occurred while fetching the answer.</p>";
+          }
+        } catch (error) {
+          console.error("에러가 발생했습니다: ", error);
           selectedAnswer.innerHTML =
             "<p>Error occurred while fetching the answer.</p>";
+        } finally {
+          loadingElement.style.display = "none";
         }
-      } catch (error) {
-        console.error("에러가 발생했습니다: ", error);
-        selectedAnswer.innerHTML =
-          "<p>Error occurred while fetching the answer.</p>";
-      } finally {
-        loadingElement.style.display = "none";
       }
     }
   };
