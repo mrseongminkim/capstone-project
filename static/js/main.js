@@ -13,16 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const imageElement = document.getElementById("image");
   let loadingInterval;
 
-  //test
-
   imageElement.style.display = "none";
   const updateImage = (probability) => {
     if (probability >= 0.8) {
-      imageElement.src = "/static/images/smile.jpg";
+      imageElement.src = "/static/images/smile.png";
     } else if (probability >= 0.5) {
-      imageElement.src = "/static/images/expressionless.jpg";
+      imageElement.src = "/static/images/expressionless.png";
     } else {
-      imageElement.src = "/static/images/angry.jpg";
+      imageElement.src = "/static/images/angry.png";
     }
   };
   const handleSubmit = async () => {
