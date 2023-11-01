@@ -1,35 +1,123 @@
-const question = document.getElementById('question');
-const A = document.getElementById('A');
-const B = document.getElementById('B');
-const C = document.getElementById('C');
-const D = document.getElementById('D');
-const E = document.getElementById('E');
-const reset_button = document.getElementById('reset_button');
-const submit_button = document.getElementById('submit_button');
-const answer = document.getElementById('answer');
-const prob = document.getElementById('prob');
+document.addEventListener("DOMContentLoaded", function () {
+  const question = document.getElementById("question");
+  const A = document.getElementById("A");
+  const B = document.getElementById("B");
+  const C = document.getElementById("C");
+  const D = document.getElementById("D");
+  const E = document.getElementById("E");
+  const submitButton = document.getElementById("submit_button");
+  const clearButton = document.getElementById("reset_button");
+  const selectedAnswer = document.getElementById("answer");
+  const loadingElement = document.getElementById("loading");
+  const prob = document.getElementById("prob");
+  const imageElement = document.getElementById("image");
+  let loadingInterval;
 
-async function submit_mcq(event) {
-    let data = {
-        question: question.value,
-        A: A.value,
-        B: B.value,
-        C: C.value,
-        D: D.value,
-        E: E.value
+  imageElement.style.display = "none";
+  const updateImage = (probability) => {
+    if (probability >= 0.8 && probability <= 0.99) {
+      imageElement.src = "/static/images/smile.jpg";
+    } else if (probability >= 0.5 && probability < 0.8) {
+      imageElement.src = "/static/images/expressionless.jpg";
+    } else if (probability < 0.5) {
+      imageElement.src = "/static/images/angry.jpg";
+    }
+  };
+  const handleSubmit = async () => {
+    selectedAnswer.innerHTML = "";
+    prob.innerHTML = "";
+    imageElement.style.display = "none";
+    const data = {
+      question: question.value,
+      A: A.value,
+      B: B.value,
+      C: C.value,
+      D: D.value,
+      E: E.value,
     };
-    const res = await fetch('/mcq', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-    let val = await res.json();
-    answer.textContent = "The answer is " + val.answer;
-    prob.textContent = "Probability: " + val.prob;
-}
 
-reset_button.addEventListener('click', function () {
-    question.value = '';
-    A.value = '';
-    B.value = '';
-    C.value = '';
-    D.value = '';
-    E.value = '';
+    let emptyFieldCount = 0;
+    if (A.value === "") emptyFieldCount++;
+    if (B.value === "") emptyFieldCount++;
+    if (C.value === "") emptyFieldCount++;
+    if (D.value === "") emptyFieldCount++;
+    if (E.value === "") emptyFieldCount++;
+
+    if (emptyFieldCount === 5) {
+      selectedAnswer.innerHTML = "문제와 객관식 답을 모두 입력하세요.";
+    } else if (emptyFieldCount >= 4) {
+      selectedAnswer.innerHTML = "객관식 답을 2개 이상 입력하세요.";
+    } else {
+      loadingElement.style.display = "block";
+
+      // 진행 중 타이머 clear
+      if (loadingInterval) {
+        clearInterval(loadingInterval);
+      }
+
+      // 로딩바 %초기화
+      resetLoadingBar();
+      document.getElementById("loading").classList.remove("hidden");
+
+      let currentPercentage = 0;
+
+      loadingInterval = setInterval(function () {
+        currentPercentage++;
+        updateLoadingBarAndPercentage(currentPercentage);
+        if (currentPercentage >= 100) {
+          clearInterval(loadingInterval);
+        }
+      }, 90); // 9초 동안 매 90ms마다 1%씩 증가 -> 9초동안 100%차기
+
+      try {
+        const res = await fetch("/mcq", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        if (res.ok) {
+          const val = await res.json();
+          selectedAnswer.innerHTML = `<h2>선택된 답은 ${val.answer}</h2>`;
+          prob.innerHTML = "Probability : " + val.prob;
+          updateImage(val.prob);
+          imageElement.style.display = "block";
+        } else {
+          selectedAnswer.innerHTML =
+            "<p>Error occurred while fetching the answer.</p>";
+        }
+      } catch (error) {
+        console.error("에러가 발생했습니다: ", error);
+        selectedAnswer.innerHTML =
+          "<p>Error occurred while fetching the answer.</p>";
+      } finally {
+        loadingElement.style.display = "none";
+      }
+    }
+  };
+
+  const handleClear = () => {
+    question.value = "";
+    A.value = "";
+    B.value = "";
+    C.value = "";
+    D.value = "";
+    E.value = "";
+    selectedAnswer.innerHTML = "";
+    prob.innerHTML = "";
+    imageElement.style.display = "none";
+  };
+
+  function updateLoadingBarAndPercentage(percentage) {
+    document.getElementById("loadingBar").style.width = percentage + "%";
+    document.getElementById("loadingPercentage").textContent = percentage + "%";
+  }
+
+  function resetLoadingBar() {
+    document.getElementById("loadingBar").style.width = "0%";
+    document.getElementById("loadingPercentage").textContent = "0%";
+  }
+
+  submitButton.addEventListener("click", handleSubmit);
+  clearButton.addEventListener("click", handleClear);
 });
-submit_button.addEventListener('click', submit_mcq);

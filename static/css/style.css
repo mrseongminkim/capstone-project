@@ -1,0 +1,12 @@
+/* html코드에 tailwind css 적용과 더불어 이 css파일도 html에 적용 */
+
+/* 폰트 추가 */
+
+@font-face{
+    font-family: "Jua";
+    src: url("../fonts/BMJUA_ttf.ttf");
+}
+
+h1, h2{
+    font-family: "Jua";
+}
