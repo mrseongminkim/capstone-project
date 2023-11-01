@@ -15,11 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   imageElement.style.display = "none";
   const updateImage = (probability) => {
-    if (probability >= 0.8 && probability <= 0.99) {
+    if (0.8 <= probability) {
       imageElement.src = "/static/images/smile.jpg";
-    } else if (probability >= 0.5 && probability < 0.8) {
+    } else if (0.5 <= probability) {
       imageElement.src = "/static/images/expressionless.jpg";
-    } else if (probability < 0.5) {
+    } else {
       imageElement.src = "/static/images/angry.jpg";
     }
   };
