@@ -3,6 +3,7 @@ import pandas as pd
 from datasets import Dataset
 from transformers import AutoTokenizer
 from transformers import AutoModelForMultipleChoice
+import torch
 from torch.utils.data import DataLoader
 from torch.nn.functional import softmax
 
@@ -28,13 +29,8 @@ def preprocess(example):
     return tokenized_example
 
 def infer(query: pd):
-    import time
-    start = time.time()
+    mask = [-999 if (query[i] == "")[0] else 0 for i in ["A", "B", "C", "D", "E"]]
     query = add_context(query)
-    end = time.time()
-    print("context time:", end - start)
-
-    start = time.time()
     query.index = list(range(len(query)))
     query["id"] = list(range(len(query)))
     query["prompt"] = query["context"].apply(lambda x: x[:1750]) + " #### " + query["question"]
@@ -52,21 +48,14 @@ def infer(query: pd):
         with torch.no_grad():
             outputs = model(**batch)
         test_predictions.append(outputs.logits.cpu().detach())
+    test_predictions[0] = test_predictions[0] + torch.FloatTensor(mask)
     prob = softmax(test_predictions[0])
     prob = float(torch.max(prob))
-    print("prob:", prob)
     test_predictions = torch.cat(test_predictions)
     test_predictions = test_predictions.numpy()
-
-
-
     predictions_as_ids = np.argsort(-test_predictions, 1)
     predictions_as_answer_letters = np.array(list('ABCDE'))[predictions_as_ids]
     predictions_as_string = query['prediction'] = [
     ' '.join(row) for row in predictions_as_answer_letters[:, :3]
     ]
-
-    end = time.time()
-    print("infer time:", end - start)
-
     return predictions_as_string[0][0], prob

@@ -13,7 +13,6 @@ def index():
 def mcq():
     data = request.get_json()
     df = pd.DataFrame.from_dict([data], orient="columns")
-
     answer, prob = infer(df)
     return jsonify({'answer': answer, 'prob': prob})
 
