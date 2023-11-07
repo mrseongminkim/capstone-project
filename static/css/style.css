@@ -10,3 +10,26 @@
 h1, h2{
     font-family: "Jua";
 }
+
+.spinner-container {
+    display: inline-block;
+    animation: spin 30s linear infinite;
+}
+#angry_image,
+#expressionless_image,
+#smile_image {
+    width: 120px;
+    height: 120px;
+}
+textarea::-webkit-scrollbar {
+    width: 0.2rem;
+}
+  
+textarea::-webkit-scrollbar-thumb {
+    background: white;
+}
+  
+textarea::-webkit-scrollbar-thumb:hover {
+    background: white;
+}
+  
