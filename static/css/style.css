@@ -18,8 +18,8 @@ h1, h2{
 #angry_image,
 #expressionless_image,
 #smile_image {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
 }
 textarea::-webkit-scrollbar {
     width: 0.2rem;
