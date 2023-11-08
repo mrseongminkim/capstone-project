@@ -102,60 +102,31 @@ document.addEventListener("DOMContentLoaded", function () {
     angryImage.style.opacity = 1;
   };
 
-  question.addEventListener("focus", function () {
-    this.style.height = "auto";
-    this.style.height = this.scrollHeight + "px";
-    this.classList.remove("initial-height");
-  });
-  question.addEventListener("blur", function () {
-    this.style.height = "4em";
-    this.classList.add("initial-height");
-  });
-  A.addEventListener("focus", function () {
-    this.style.height = "auto";
-    this.style.height = this.scrollHeight + "px";
-    this.classList.remove("initial-height");
-  });
-  A.addEventListener("blur", function () {
-    this.style.height = "4em";
-    this.classList.add("initial-height");
-  });
-  B.addEventListener("focus", function () {
-    this.style.height = "auto";
-    this.style.height = this.scrollHeight + "px";
-    this.classList.remove("initial-height");
-  });
-  B.addEventListener("blur", function () {
-    this.style.height = "4em";
-    this.classList.add("initial-height");
-  });
-  C.addEventListener("focus", function () {
-    this.style.height = "auto";
-    this.style.height = this.scrollHeight + "px";
-    this.classList.remove("initial-height");
-  });
-  C.addEventListener("blur", function () {
-    this.style.height = "4em";
-    this.classList.add("initial-height");
-  });
-  D.addEventListener("focus", function () {
-    this.style.height = "auto";
-    this.style.height = this.scrollHeight + "px";
-    this.classList.remove("initial-height");
-  });
-  D.addEventListener("blur", function () {
-    this.style.height = "4em";
-    this.classList.add("initial-height");
-  });
-  E.addEventListener("focus", function () {
-    this.style.height = "auto";
-    this.style.height = this.scrollHeight + "px";
-    this.classList.remove("initial-height");
-  });
-  E.addEventListener("blur", function () {
-    this.style.height = "4em";
-    this.classList.add("initial-height");
-  });
+  function setupTextarea(textarea) {
+    textarea.addEventListener("input", function () {
+      this.style.height = "auto";
+      this.style.height = this.scrollHeight + "px";
+      this.classList.remove("initial-height");
+    });
+
+    textarea.addEventListener("focus", function () {
+      this.style.height = "auto";
+      this.style.height = this.scrollHeight + "px";
+      this.classList.remove("initial-height");
+    });
+
+    textarea.addEventListener("blur", function () {
+      this.style.height = "4em";
+      this.classList.add("initial-height");
+    });
+  }
+
+  setupTextarea(question);
+  setupTextarea(A);
+  setupTextarea(B);
+  setupTextarea(C);
+  setupTextarea(D);
+  setupTextarea(E);
 
   submitButton.addEventListener("click", handleSubmit);
   clearButton.addEventListener("click", handleClear);
